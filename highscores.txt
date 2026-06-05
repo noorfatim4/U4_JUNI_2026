@@ -4,6 +4,7 @@ Player 1;45
 noori;45
 dinmamma;45
 moomin;45
+f;30
+Player 1;25
 Player 2;21
 fuzzy;17
-Player 1;13

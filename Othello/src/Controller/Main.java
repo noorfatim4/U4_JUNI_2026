@@ -1,11 +1,10 @@
 package Controller;
-
 import View.GameFrame;
 import javax.swing.SwingUtilities;
 
-public class Main {
+//fjfjfjfj
 
-    /// test github
+public class Main {
 
     /**
      * Denna metod påbörjar programmet

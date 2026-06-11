@@ -5,8 +5,6 @@ import javax.swing.SwingUtilities;
 
 public class Main {
 
-    /// test github
-
     /**
      * Denna metod påbörjar programmet
      * @param args

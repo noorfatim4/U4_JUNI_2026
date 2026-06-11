@@ -253,8 +253,8 @@ public class Game {
         for (int r = 0; r < board.getRows(); r++) {
             for (int c = 0; c < board.getCols(); c++) {
                 Piece p = board.getPiece(r, c);
-                if (p instanceof PlayerPiece pp) {
-                    if (pp.getOwner() == 1) score1++;
+                if (p instanceof PlayerPiece) {
+                    if (((PlayerPiece) p).getOwner() == 1) score1++;
                     else score2++;
                 }
             }

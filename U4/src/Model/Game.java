@@ -140,7 +140,7 @@ public class Game {
      * @author Fauzia Bhuiyan & Noor-Fatima Nabi
      */
     private void tryCaptureDirection(int row, int col, int owner, int dr, int dc) {
-        List<PlayerPiece> toFlip = new ArrayList<>();
+        List<Piece> toFlip = new ArrayList<>();
         int r = row + dr;
         int c = col + dc;
 
@@ -148,20 +148,21 @@ public class Game {
             Piece p = board.getPiece(r, c);
 
             if (p == null) return;
-            if (p instanceof MysteryPiece mp) {
-                if (!mp.isActivated()) {
-                    activateMystery(mp);
-                }
-                return;
-            }
 
-            if (p instanceof PlayerPiece pp) {
-                if (pp.getOwner() != owner) {
-                    toFlip.add(pp);           // opponent piece – mark for flipping
+            if (p instanceof MysteryPiece) {
+                if (!((MysteryPiece) p).isActivated()) {
+                    toFlip.add(p);
+                }
+            } else if (p instanceof PlayerPiece) {
+                if (((PlayerPiece) p).getOwner() != owner) {
+                    toFlip.add(p);
                 } else {
-                    // Own piece found – flip everything collected so far
-                    for (PlayerPiece flip : toFlip) {
-                        flip.setOwner(owner);
+                    for (Piece flip : toFlip) {
+                        if (flip instanceof MysteryPiece) {
+                            activateMystery((MysteryPiece) flip);
+                        } else if (flip instanceof PlayerPiece) {
+                            ((PlayerPiece) flip).setOwner(owner);
+                        }
                     }
                     return;
                 }
@@ -185,16 +186,18 @@ public class Game {
         int col = mp.getCol();
 
         switch (mp.getType()) {
-            case TIMEJUMP: {
+            case TIMEJUMP:
                 extraTurn = true;
-            }
-            case NARCISSUS: {
+                break;
+
+            case NARCISSUS:
                 skipNextTurn = true;
-            }
-            case ADDITIVE: {
+                break;
+
+            case ADDITIVE:
                 applyAdditive(row, col);
                 updateScores();
-            }
+            break;
         }
         board.placePiece(new PlayerPiece(row, col, currentPlayer));
     }

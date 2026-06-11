@@ -2,7 +2,7 @@ package Controller;
 import View.GameFrame;
 import javax.swing.SwingUtilities;
 
-//fjfjfjfj
+
 
 public class Main {
 

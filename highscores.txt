@@ -1,11 +1,10 @@
 gyufk;51
 dinfarsa;51
+Player 1;48
 Player 1;45
 noori;45
 dinmamma;45
 moomin;45
-bob;23
+Player 1;32
 f;30
 Player 1;25
-Player 2;21
-fuzzy;17

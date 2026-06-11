@@ -150,20 +150,26 @@ public class Game {
 
             if (p == null) return;
 
-            if (p instanceof MysteryPiece) {
-                if (!((MysteryPiece) p).isActivated()) {
-                    toFlip.add(p);
-                }
-            } else if (p instanceof PlayerPiece) {
-                if (((PlayerPiece) p).getOwner() != owner) {
-                    toFlip.add(p);
+            if (p instanceof MysteryPiece mp) {
+                if (!mp.isActivated()) {
+                    toFlip.add(mp);
                 } else {
+                    return;
+                }
+            } else if (p instanceof PlayerPiece pp) {
+                if (pp.getOwner() != owner) {
+                    toFlip.add(pp);
+                } else {
+                    boolean hasOpponentPiece = toFlip.stream()
+                            .anyMatch(piece ->
+                                    piece instanceof PlayerPiece);
+
                     for (Piece flip : toFlip) {
-                        if (flip instanceof MysteryPiece) {
-                            String msg = activateMystery((MysteryPiece) flip);
+                        if (flip instanceof MysteryPiece mystPiece && !hasOpponentPiece) {
+                            String msg = activateMystery(mystPiece);
                             if (msg != null) pendingMysteryMessages.add(msg);
-                        } else if (flip instanceof PlayerPiece) {
-                            ((PlayerPiece) flip).setOwner(owner);
+                        } else if (flip instanceof PlayerPiece playerPiece) {
+                            playerPiece.setOwner(owner);
                         }
                     }
                     return;

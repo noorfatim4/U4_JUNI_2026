@@ -51,6 +51,10 @@ public class Controller {
             JOptionPane.showMessageDialog(view, "Invalid move ! Place next to a pawn !");
             return;
         }
+        for (String msg : game.getPendingMysteryMessages()) {
+            JOptionPane.showMessageDialog(view, msg, "Mysterium aktiverat!",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
         refreshView();
         if (game.isGameOver()) {
             showGameOver();

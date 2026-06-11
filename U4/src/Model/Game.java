@@ -25,6 +25,7 @@ public class Game {
     private String player2Name = "Player 2";
     private int activatedMysteries = 0;
     private int totalMysteries = 0;
+    private List<String> pendingMysteryMessages = new ArrayList<>();
     private static final int[][] DIRECTIONS = {
             {-1, -1}, {-1, 0}, {-1, 1},
             {0,  -1},          {0,  1},
@@ -159,7 +160,8 @@ public class Game {
                 } else {
                     for (Piece flip : toFlip) {
                         if (flip instanceof MysteryPiece) {
-                            activateMystery((MysteryPiece) flip);
+                            String msg = activateMystery((MysteryPiece) flip);
+                            if (msg != null) pendingMysteryMessages.add(msg);
                         } else if (flip instanceof PlayerPiece) {
                             ((PlayerPiece) flip).setOwner(owner);
                         }
@@ -177,29 +179,34 @@ public class Game {
      * @param mp
      * @author Fauzia Bhuiyan & Noor-Fatima Nabi
      */
-    private void activateMystery(MysteryPiece mp) {
-        if (mp.isActivated()) return;
+    private String activateMystery(MysteryPiece mp) {
+        if (mp.isActivated()) return null;
         mp.setActivated(true);
         activatedMysteries++;
 
         int row = mp.getRow();
         int col = mp.getCol();
+        String message = null;
 
         switch (mp.getType()) {
             case TIMEJUMP:
                 extraTurn = true;
+                message = "Timejump! Player " + currentPlayer + " may play again.";
                 break;
 
             case NARCISSUS:
                 skipNextTurn = true;
+                message = "Narcissus! Player " + currentPlayer + " lost the next turn.";
                 break;
 
             case ADDITIVE:
                 applyAdditive(row, col);
                 updateScores();
-            break;
+                message = "Additive! The slots around the mystery is filled with your pawns!";
+                break;
         }
         board.placePiece(new PlayerPiece(row, col, currentPlayer));
+        return message;
     }
 
     /**
@@ -352,5 +359,11 @@ public class Game {
     public void setPlayerNames(String name1, String name2) {
         this.player1Name = (name1 == null || name1.isBlank()) ? "Player 1" : name1;
         this.player2Name = (name2 == null || name2.isBlank()) ? "Player 2" : name2;
+    }
+
+    public List<String> getPendingMysteryMessages() {
+        List<String> copy = new ArrayList<>(pendingMysteryMessages);
+        pendingMysteryMessages.clear();
+        return copy;
     }
 }

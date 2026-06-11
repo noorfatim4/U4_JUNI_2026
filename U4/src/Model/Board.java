@@ -37,8 +37,9 @@ public class Board {
      * @author Noor-Fatima Nabi
      */
     public boolean isEmpty(int row, int col) {
-        Piece p = boxes[row][col];
-        return p == null || p instanceof MysteryPiece;
+//        Piece p = boxes[row][col];
+        return boxes[row][col] == null;
+//        return p == null || p instanceof MysteryPiece;
     }
 
     /**
@@ -76,7 +77,7 @@ public class Board {
     public boolean hasNeighbourPiece(int row, int col) {
         for (int[] d : ALL_DIRECTIONS) {
             int r = row + d[0], c = col + d[1];
-            if (withinArray(r, c) && boxes[r][c] instanceof PlayerPiece) return true;
+            if (withinArray(r, c) && boxes[r][c] != null) return true;
         }
         return false;
     }

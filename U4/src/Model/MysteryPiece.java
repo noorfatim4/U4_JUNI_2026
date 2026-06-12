@@ -49,12 +49,4 @@ public class MysteryPiece extends Piece {
     public void setActivated(boolean value) {
         activated = value;
     }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
-    }
 }

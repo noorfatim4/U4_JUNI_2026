@@ -64,20 +64,29 @@ public class Game {
      * @author Fauzia Bhuiyan & Noor-Fatima Nabi
      */
     private void placeMysteries() {
+        List<int[]> validPositions = new ArrayList<>();
+
+        for (int r = 0; r < board.getRows(); r++) {
+            for (int c = 0; c < board.getCols(); c++) {
+                if (board.isEmpty(r, c) && !board.isCorner(r, c)) {
+                    validPositions.add(new int[]{r, c});
+                }
+            }
+        }
+
         int count = 0;
-        int maxAttempts = 10_000;   // guard against infinite loop on tiny boards
+        while (count < 5 && !validPositions.isEmpty()) {
+            int index = (int) (Math.random() * validPositions.size());
+            int[] pos = validPositions.get(index);
+            int r = pos[0];
+            int c = pos[1];
 
-        while (count < 5 && maxAttempts-- > 0) {
-            int r = (int) (Math.random() * board.getRows());
-            int c = (int) (Math.random() * board.getCols());
-
-            if (!board.isEmpty(r, c))         continue;   // tile already taken
-            if (board.isCorner(r, c))          continue;   // U4FG8: no corners
-            if (board.hasNeighbourMystery(r, c)) continue; // U4FG5: not touching
-
-            MysteryType type = MysteryType.randomType();   // U4FG6: random type
-            board.placePiece(new MysteryPiece(r, c, type));
-            count++;
+            if (!board.hasNeighbourMystery(r, c)) {
+                MysteryType type = MysteryType.randomType();
+                board.placePiece(new MysteryPiece(r, c, type));
+                count++;
+            }
+            validPositions.remove(index);
         }
         totalMysteries = count;
     }

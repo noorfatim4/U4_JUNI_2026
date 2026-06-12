@@ -92,7 +92,8 @@ public class Board {
     public boolean hasNeighbourMystery(int row, int col) {
         for (int[] d : ALL_DIRECTIONS) {
             int r = row + d[0], c = col + d[1];
-            if (withinArray(r, c) && boxes[r][c] instanceof MysteryPiece) return true;
+            if (withinArray(r, c) && boxes[r][c] instanceof MysteryPiece)
+                return true;
         }
         return false;
     }

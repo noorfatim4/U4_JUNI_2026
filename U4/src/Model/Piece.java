@@ -6,9 +6,9 @@ package Model;
  * @author Fauzia Bhuiyan
  */
 public abstract class Piece {
-    protected int row;
-    protected int col;
-    protected int owner;
+    private int row;
+    private int col;
+    private int owner;
 
     /**
      * Denna konstruktor skapar en pjäs med rad, kolumn och ägare.

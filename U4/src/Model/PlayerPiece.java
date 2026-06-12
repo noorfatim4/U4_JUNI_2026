@@ -16,13 +16,4 @@ public class PlayerPiece extends Piece {
     public PlayerPiece(int row, int col, int owner) {
         super(row, col, owner);
     }
-
-    public int getOwner() {
-        return owner;
-    }
-
-    @Override
-    public void setOwner(int newOwner) {
-        this.owner = newOwner;
-    }
 }

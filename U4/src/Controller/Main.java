@@ -2,8 +2,6 @@ package Controller;
 import View.GameFrame;
 import javax.swing.SwingUtilities;
 
-
-
 public class Main {
 
     /**

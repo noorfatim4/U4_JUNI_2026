@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 
     public class TileButton extends JButton {
-
         private int row, col;
         private Controller controller;
         private TileOwner status;

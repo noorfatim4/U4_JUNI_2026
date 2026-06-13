@@ -37,9 +37,7 @@ public class Board {
      * @author Noor-Fatima Nabi
      */
     public boolean isEmpty(int row, int col) {
-//        Piece p = boxes[row][col];
         return boxes[row][col] == null;
-//        return p == null || p instanceof MysteryPiece;
     }
 
     /**

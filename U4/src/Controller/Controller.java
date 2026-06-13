@@ -33,7 +33,7 @@ public class Controller {
 
     /**
      * Denna metod påbörjar spelet i programmet
-     * @ author Noor-Fatima Nabi
+     * @author Noor-Fatima Nabi
      */
     public void startGame() {
         refreshView();
@@ -41,9 +41,9 @@ public class Controller {
 
     /**
      * Denna metod kontrollerar dragen på spelrutorna
-     * @ param row
-     * @ param col
-     * @ author Noor-Fatima Nabi
+     * @param row
+     * @param col
+     * @author Noor-Fatima Nabi
      */
     public void tileClicked(int row, int col) {
         if (view == null) return;
@@ -63,7 +63,7 @@ public class Controller {
 
     /**
      * Denna metod påbörjar ett nytt spel utan att stänga fönstret
-     * @ author Fauzia Bhuiyan
+     * @author Fauzia Bhuiyan
      */
     public void newGame() {
         game.newGame();
@@ -75,7 +75,7 @@ public class Controller {
 
     /**
      * Denna metod uppdaterar fönstret med poäng
-     * @ author Fauzia Bhuiyan & Noor-Fatima Nabi
+     * @author Fauzia Bhuiyan & Noor-Fatima Nabi
      */
     private void refreshView() {
         TileOwner[][] boardStatus = game.getBoardStatus();
@@ -95,7 +95,7 @@ public class Controller {
 
     /**
      * Denna metod uppdaterar spelresultat
-     * @ author Fauzia Bhuiyan & Noor-Fatima Nabi
+     * @author Fauzia Bhuiyan & Noor-Fatima Nabi
      */
     private void showGameOver() {
         String winnerName  = game.getWinnerName();

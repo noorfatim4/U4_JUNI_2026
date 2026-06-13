@@ -3,10 +3,6 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Side panel showing live scores and the highscore list.
- * U4FG15, U4FG18.
- */
 public class InfoPanel extends JPanel {
 
     private final JLabel scoreP1;

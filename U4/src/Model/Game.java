@@ -120,8 +120,8 @@ public class Game {
             status = GameStatus.FINISHED;
             int   winnerScore = getWinnerScore();
             String winnerName = getWinnerName();
-            if (!winnerName.equals("Draw") && highscoreManager.qualifies(winnerScore)) {
-            } return true;
+//            if (!winnerName.equals("Draw") && highscoreManager.qualifies(winnerScore)) {
+//            } return true;
         }
         handleTurnSwitch();
         return true;

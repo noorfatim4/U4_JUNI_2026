@@ -4,10 +4,6 @@ import Controller.Controller;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Main panel that assembles the board, status bar, info panel,
- * coordinate input fields, and New Game button.
- */
 public class MainPanel extends JPanel {
 
     private final BoardPanel  boardPanel;
@@ -41,7 +37,6 @@ public class MainPanel extends JPanel {
     public InfoPanel   getInfoPanel()   { return infoPanel; }
     public StatusPanel getStatusPanel() { return statusPanel; }
 
-    /** Updates the top score/turn labels. */
     public void updateInfo(int currentPlayer, int scoreP1, int scoreP2) {
         turnLabel.setText("Turn: Player " + currentPlayer);
     }
